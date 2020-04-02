@@ -1,15 +1,19 @@
-<template>
-  <div>
-    <form>
-      <input
+<template lang="pug">
+  include ../mixins/bem
+  +b.add-task
+    +e.FORM.form
+      +e.INPUT.input(
         type="text"
         v-model="title"
         name="title"
         placeholder="Add Task ..."
-      />
-      <input type="submit" value="Submit" class="button" @click="addTask" />
-    </form>
-  </div>
+      )
+      +e.INPUT.submit.button(
+        type="submit"
+        value="Submit"
+        @click="addTask"
+      )
+
 </template>
 
 <script>

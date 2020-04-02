@@ -1,9 +1,14 @@
-<template>
-  <div class="todos">
-    <div v-for="task in todos" v-bind:key="task.id">
-      <Task :task="task" v-on:del-task="$emit('del-task', task.id)" />
-    </div>
-  </div>
+<template lang="pug">
+  include ../mixins/bem
+  +b.todos
+    +e.container(
+      v-for="task in todos"
+      v-bind:key="task.id"
+    )
+      Task(
+        :task="task"
+        v-on:del-task="$emit('del-task', task.id)"
+      )
 </template>
 
 <script>

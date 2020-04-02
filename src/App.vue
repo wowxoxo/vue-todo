@@ -1,10 +1,17 @@
-<template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
-    <Todos v-bind:todos="todos" v-on:del-task="delTask" />
-    <AddTask v-on:add-task="addTask" />
-  </div>
+<template lang="pug">
+  include mixins/bem
+  #app
+    img(
+      alt="Vue logo"
+      src="./assets/logo.png"
+    )
+    Todos(
+      v-bind:todos="todos"
+      v-on:del-task="delTask"
+    )
+    AddTask(
+      v-on:add-task="addTask"
+    )
 </template>
 
 <script>
