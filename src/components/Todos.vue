@@ -15,12 +15,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-.todos {
-  width: 50vw;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-}
-</style>

@@ -22,13 +22,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.completed {
-  text-decoration: line-through;
-}
-
-.delete {
-  cursor: pointer;
-}
-</style>
