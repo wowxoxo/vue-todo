@@ -1,10 +1,11 @@
 <template lang="pug">
   include mixins/bem
-  #app
+  +b.app#app
     img(
       alt="Vue logo"
       src="./assets/logo.png"
     )
+    +e.H1.title {{ env }}
     Todos(
       v-bind:todos="todos"
       v-on:del-task="delTask"
@@ -27,6 +28,7 @@ export default {
   },
   data() {
     return {
+      env: process.env.VUE_APP_ENV,
       todos: [
         // {
         //   id: 1,
@@ -49,14 +51,14 @@ export default {
   methods: {
     delTask(id) {
       axios
-        .delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+        .delete(process.env.VUE_APP_API_TODOS + id)
         .then(() => (this.todos = this.todos.filter(todo => todo.id !== id)))
         .catch(console.log);
     },
     addTask(newTask) {
       const { title, completed } = newTask;
       axios
-        .post("https://jsonplaceholder.typicode.com/todos", {
+        .post(process.env.VUE_APP_API_TODOS, {
           title,
           completed
         })
@@ -66,8 +68,9 @@ export default {
     }
   },
   created() {
+    console.log(`${process.env.VUE_APP_ENV}`);
     axios
-      .get("https://jsonplaceholder.typicode.com/todos?_limit=5")
+      .get(process.env.VUE_APP_API_TODOS + "?_limit=5")
       .then(res => (this.todos = res.data))
       .catch(e => console.log(e));
   }
