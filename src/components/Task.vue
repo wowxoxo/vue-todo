@@ -1,7 +1,11 @@
 <template>
   <div class="task" v-bind:class="{ completed: task.completed }">
     <p>
-      <input type="checkbox" v-on:change="markCompleted" />
+      <input
+        type="checkbox"
+        v-on:change="markCompleted"
+        :checked="task.completed"
+      />
       {{ task.title }}
       <button class="delete" @click="$emit('del-task', task.id)">x</button>
     </p>
@@ -22,5 +26,9 @@ export default {
 <style scoped>
 .completed {
   text-decoration: line-through;
+}
+
+.delete {
+  cursor: pointer;
 }
 </style>

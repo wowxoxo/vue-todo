@@ -29,6 +29,8 @@ export default {
       };
 
       this.$emit("add-task", newTask);
+
+      this.title = "";
     }
   }
 };
@@ -37,6 +39,15 @@ export default {
 <style lang="sass">
 form
   display: flex
+  width: 50vw
+  margin: 0 auto
   justify-content: center
   margin-top: 40px
+
+input[type="text"]
+    flex: 10
+    padding: 5px
+
+input[type="submit"]
+    flex: 2
 </style>
