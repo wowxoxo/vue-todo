@@ -1,11 +1,8 @@
 <template lang="pug">
   include mixins/bem
   +b.app#app
-    img(
-      alt="Vue logo"
-      src="./assets/logo.png"
-    )
-    +e.H1.title {{ env }}
+    +e.H1.title Todo App
+    +e.env Current env: {{ env }}
     Todos(
       v-bind:todos="todos"
       v-on:del-task="delTask"

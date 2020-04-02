@@ -1,0 +1,37 @@
+.task
+  padding: 8px 0
+  display: flex
+  width: 100%
+  align-items: flex-start
+  border-bottom: 1px solid $color-grey
+
+  &:hover,
+  &:focus
+    .task__button
+      opacity: 1
+
+  &_completed
+    .task__title
+      text-decoration: line-through
+
+  &__checkbox
+    margin-left: 0
+    margin-right: 10px
+
+  &__title
+    flex: 1
+
+  &__button
+    content: '×'
+
+    transition: opacity ease .25s
+    // opacity: 0.5
+    background: none  
+    border: none
+    color: $color-danger
+    font-size: 24px
+    height: 22px
+
+
+.delete
+  cursor: pointer

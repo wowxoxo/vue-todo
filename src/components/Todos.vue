@@ -1,11 +1,20 @@
 <template lang="pug">
   include ../mixins/bem
   +b.todos
-    +e.container(
-      v-for="task in todos"
-      v-bind:key="task.id"
-    )
+    +e.items_left
+      +e.items-title Сделать
       Task(
+        v-for="task in todos"
+        :key="task.id"
+        :task="task"
+        v-on:del-task="$emit('del-task', task.id)"
+      )
+    
+    +e.items_completed
+      +e.items-title Готово
+      Task(
+        v-for="task in todos"
+        :key="task.id"
         :task="task"
         v-on:del-task="$emit('del-task', task.id)"
       )

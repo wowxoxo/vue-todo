@@ -1,19 +1,17 @@
 <template lang="pug">
   include ../mixins/bem
   +b.task(
-    class="task"
-    v-bind:class="{ completed: task.completed }"
+    v-bind:class="{ 'task_completed': task.completed }"
   )
-    +e.container
-      +e.INPUT.checkbox(
-        type="checkbox"
-        v-on:change="markCompleted"
-        :checked="task.completed"
-      )
-      +e.SPAN.title {{ task.title }}
-      +e.BUTTON.button.delete(
-        @click="$emit('del-task', task.id)"
-      ) x
+    +e.INPUT.checkbox(
+      type="checkbox"
+      v-on:change="markCompleted"
+      :checked="task.completed"
+    )
+    +e.SPAN.title {{ task.title }}
+    +e.BUTTON.button.delete(
+      @click="$emit('del-task', task.id)"
+    ) ×
 </template>
 
 <script>
