@@ -2,20 +2,17 @@
   include mixins/bem
   +b.app#app
     +e.H1.title Todo App
-    +e.env Current env: {{ env }}
-    Todos(
-      v-bind:todos="todos"
-      v-on:del-task="delTask"
-    )
-    AddTask(
-      v-on:add-task="addTask"
-    )
+    +e.env Current env: {{ appEnv }}
+    Todos
+    +e.count {{ count }}
+    +e.final-price Final price is {{ finalPrice }}
+    AddTask
 </template>
 
 <script>
 import Todos from "@/components/Todos.vue";
 import AddTask from "@/components/AddTask.vue";
-import axios from "axios";
+import { mapActions, mapState, mapGetters } from "vuex";
 
 export default {
   name: "App",
@@ -23,53 +20,25 @@ export default {
     Todos,
     AddTask
   },
-  data() {
-    return {
-      env: process.env.VUE_APP_ENV,
-      todos: [
-        // {
-        //   id: 1,
-        //   title: 'Todo 1',
-        //   completed: true
-        // },
-        // {
-        //   id: 2,
-        //   title: 'Todo 2',
-        //   completed: false
-        // },
-        // {
-        //   id: 3,
-        //   title: 'Todo 3',
-        //   completed: false
-        // },
-      ]
-    };
+  computed: {
+    ...mapState(["count", "tasks"]),
+    ...mapGetters(["finalPrice", "appEnv"])
+    // ...mapState({
+    //   stateCount: (state) => state.count
+    // }),
+    // finalPrice() {
+    //   return this.$store.getters.finalPrice;
+    // },
+    // count() {
+    //   return this.stateCount;
+    // },
   },
   methods: {
-    delTask(id) {
-      axios
-        .delete(process.env.VUE_APP_API_TODOS + id)
-        .then(() => (this.todos = this.todos.filter(todo => todo.id !== id)))
-        .catch(console.log);
-    },
-    addTask(newTask) {
-      const { title, completed } = newTask;
-      axios
-        .post(process.env.VUE_APP_API_TODOS, {
-          title,
-          completed
-        })
-        .then(res => (this.todos = [...this.todos, res.data]))
-        // .catch(e => console.log(e.data))
-        .catch(console.log);
-    }
+    ...mapActions(["getTasks"])
   },
   created() {
     console.log(`${process.env.VUE_APP_ENV}`);
-    axios
-      .get(process.env.VUE_APP_API_TODOS + "?_limit=5")
-      .then(res => (this.todos = res.data))
-      .catch(e => console.log(e));
+    this.getTasks();
   }
 };
 </script>

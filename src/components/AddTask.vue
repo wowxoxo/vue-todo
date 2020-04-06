@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -24,6 +25,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["postTask"]),
     addTask(e) {
       e.preventDefault();
       const newTask = {
@@ -32,7 +34,7 @@ export default {
         completed: false
       };
 
-      this.$emit("add-task", newTask);
+      this.postTask(newTask);
 
       this.title = "";
     }

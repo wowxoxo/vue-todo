@@ -5,21 +5,28 @@
   )
     +e.INPUT.checkbox(
       type="checkbox"
-      v-on:change="markCompleted"
+      @change="markCompleted"
       :checked="task.completed"
     )
     +e.SPAN.title {{ task.title }}
     +e.BUTTON.button.delete(
-      @click="$emit('del-task', task.id)"
+      @click="deleteTask(task.id)"
     ) ×
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   props: ["task"],
   methods: {
+    ...mapActions(["putTask", "deleteTask"]),
     markCompleted() {
-      this.task.completed = !this.task.completed;
+      // this.task.completed = !this.task.completed;
+      const editedTask = {
+        ...this.task,
+        completed: !this.task.completed
+      };
+      this.putTask(editedTask);
     }
   }
 };
