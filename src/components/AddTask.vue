@@ -23,7 +23,7 @@ import { TaskInterface } from "@/interfaces/TaskInterface";
 
 @Component
 export default class AddTask extends Vue {
-  @Action postTask!: any;
+  @Action postTask!: (task: TaskInterface) => void;
 
   private title: string = "New task";
 

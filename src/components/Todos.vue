@@ -22,6 +22,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import { Getter } from "vuex-class";
 import Task from "@/components/Task.vue";
+import { TaskInterface } from "@/interfaces/TaskInterface";
 
 @Component({
   components: {
@@ -29,7 +30,7 @@ import Task from "@/components/Task.vue";
   }
 })
 export default class Todos extends Vue {
-  @Getter completedTasks!: any; //todo
-  @Getter uncompletedTasks!: any; //todo
+  @Getter completedTasks!: TaskInterface[];
+  @Getter uncompletedTasks!: TaskInterface[];
 }
 </script>

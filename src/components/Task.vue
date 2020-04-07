@@ -22,8 +22,8 @@ import { TaskInterface } from "@/interfaces/TaskInterface";
 
 @Component
 export default class Task extends Vue {
-  @Action putTask!: any;
-  @Action deleteTask!: any;
+  @Action putTask!: (task: TaskInterface) => void;
+  @Action deleteTask!: (id: TaskInterface['id']) => void;
 
   @Prop() private task!: TaskInterface;
 
