@@ -1,4 +1,5 @@
 # vue-todo
+Vue todo app with Pug, Sass, Vuex & Typescript
 
 ## Project setup
 ```
