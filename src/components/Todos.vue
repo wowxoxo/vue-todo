@@ -18,15 +18,18 @@
       )
 </template>
 
-<script>
-import { mapGetters } from "vuex";
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+import { Getter } from "vuex-class";
 import Task from "@/components/Task.vue";
-export default {
+
+@Component({
   components: {
     Task
-  },
-  computed: {
-    ...mapGetters(["completedTasks", "uncompletedTasks"])
   }
-};
+})
+export default class Todos extends Vue {
+  @Getter completedTasks!: any; //todo
+  @Getter uncompletedTasks!: any; //todo
+}
 </script>

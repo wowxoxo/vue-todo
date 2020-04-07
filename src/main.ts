@@ -1,7 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import "./assets/sass/_import.sass";
-import { store } from "./store";
+import store from "./store";
 
 Vue.config.productionTip = false;
 

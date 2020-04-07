@@ -16,28 +16,28 @@
 
 </template>
 
-<script>
-import { mapActions } from "vuex";
-export default {
-  data() {
-    return {
-      title: "New task"
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+import { Action } from "vuex-class";
+import { TaskInterface } from "@/interfaces/TaskInterface";
+
+@Component
+export default class AddTask extends Vue {
+  @Action postTask!: any;
+
+  private title: string = "New task";
+
+  public addTask(e: MouseEvent) {
+    console.log(e);
+    e.preventDefault();
+    const newTask: TaskInterface = {
+      title: this.title,
+      completed: false
     };
-  },
-  methods: {
-    ...mapActions(["postTask"]),
-    addTask(e) {
-      e.preventDefault();
-      const newTask = {
-        // id: Math.random().toString(36).substring(7),
-        title: this.title,
-        completed: false
-      };
 
-      this.postTask(newTask);
+    this.postTask(newTask);
 
-      this.title = "";
-    }
+    this.title = "";
   }
-};
+}
 </script>
